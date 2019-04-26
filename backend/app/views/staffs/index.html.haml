@@ -1,12 +1,16 @@
-%table.table.bordered
-  %thead
-    %th Name
-    %th Mobile
-    %th Designation
-  %tbody
-    - @records.each do |record|
-      %tr
-        %td= record.name
-        %td= record.mobile_number
-        %td= record.designation
-= pagy_bootstrap_responsive_nav(@pagy).html_safe
+.card
+  .card-body
+    %h4.card-title Staff
+    .card-description
+    %table.table.bordered
+      %thead
+        %th Name
+        %th Mobile
+        %th Designation
+      %tbody
+        - @records.each do |record|
+          %tr
+            %td= record.name
+            %td= record.mobile_number
+            %td= record.designation
+    = pagy_bootstrap_responsive_nav(@pagy).html_safe

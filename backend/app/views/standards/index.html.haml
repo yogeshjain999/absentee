@@ -1,8 +1,12 @@
-%table.table.bordered
-  %thead
-    %th Class
-  %tbody
-    - @records.each do |record|
-      %tr
-        %td= record.standard.to_s + ' ' + record.section.to_s
-= pagy_bootstrap_responsive_nav(@pagy).html_safe
+.card
+  .card-body
+    %h4.card-title Class
+    .card-description
+    %table.table.bordered
+      %thead
+        %th Class
+      %tbody
+        - @records.each do |record|
+          %tr
+            %td= record.standard.to_s + ' ' + record.section.to_s
+    = pagy_bootstrap_responsive_nav(@pagy).html_safe
