@@ -1,4 +1,27 @@
 import React, { Fragment } from 'react';
+import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import {
+  BrowserRouter, Switch, Route, Redirect,
+} from 'react-router-dom';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+import store from './reducers';
+import * as routes from './routes';
+
+import Login from './containers/login';
+import Navbar from './components/navbar';
+import Root from './containers/root';
+
+import NotFound from './components/notFound';
+
+import sessionHelpers from './utils/sessionHelpers';
+
+const protectedRoutes = [
+  { path: '/', container: Root },
+];
 
 const App = () => (
   <Provider store={store}>
@@ -22,12 +45,12 @@ const App = () => (
                       <div className="content-wrapper">
                         <Switch>
                           {
-                            protectedRoutes.list.map(route => (
+                            protectedRoutes.map(route => (
                               <Route
                                 exact
                                 key={route.path}
                                 path={route.path}
-                                component={containerMappings[route.container]}
+                                component={route.container}
                               />
                             ))
                           }
