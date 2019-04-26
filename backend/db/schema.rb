@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_181700) do
+ActiveRecord::Schema.define(version: 2019_04_26_191130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_181700) do
   create_table "staffs", force: :cascade do |t|
     t.string "mobile_number", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "staff_id", null: false
+    t.string "registration_no", null: false
     t.string "name"
     t.string "designation"
     t.string "reset_password_token"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_181700) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "school_id"
+    t.string "auth_token"
     t.index ["mobile_number"], name: "index_staffs_on_mobile_number", unique: true
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
     t.index ["school_id"], name: "index_staffs_on_school_id"
@@ -76,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_181700) do
   end
 
   create_table "students", force: :cascade do |t|
+    t.string "name"
     t.string "registration_no"
     t.integer "roll_no"
     t.string "gender"
@@ -87,7 +89,9 @@ ActiveRecord::Schema.define(version: 2019_04_26_181700) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.bigint "school_id"
+    t.bigint "standard_id"
     t.index ["school_id"], name: "index_students_on_school_id"
+    t.index ["standard_id"], name: "index_students_on_standard_id"
   end
 
   add_foreign_key "attendances", "schools"
@@ -96,4 +100,5 @@ ActiveRecord::Schema.define(version: 2019_04_26_181700) do
   add_foreign_key "staffs", "schools"
   add_foreign_key "standards", "schools"
   add_foreign_key "students", "schools"
+  add_foreign_key "students", "standards"
 end
