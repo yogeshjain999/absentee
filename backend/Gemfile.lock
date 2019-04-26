@@ -84,6 +84,12 @@ GEM
       thor (~> 0.14)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    globalize (5.2.0)
+      activemodel (>= 4.2, < 5.3)
+      activerecord (>= 4.2, < 5.3)
+      request_store (~> 1.0)
+    globalize-accessors (0.2.1)
+      globalize (~> 5.0, >= 5.0.0)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -154,6 +160,8 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     redis (4.1.0)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
@@ -250,6 +258,8 @@ DEPENDENCIES
   devise
   ffaker
   figaro
+  globalize
+  globalize-accessors
   haml
   jquery-rails
   listen (>= 3.0.5, < 3.2)

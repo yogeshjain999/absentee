@@ -1,4 +1,4 @@
-import { createStore, combineReducers } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
 
 import storageHelpers from '../utils/storageHelpers';
 
