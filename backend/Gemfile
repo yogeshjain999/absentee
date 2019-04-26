@@ -30,6 +30,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'bootstrap'
 gem 'popper_js'
 gem 'jquery-rails'
+gem 'font-awesome-rails'
 
 # Bootstrap form
 gem "bootstrap_form", ">= 4.2.0"
