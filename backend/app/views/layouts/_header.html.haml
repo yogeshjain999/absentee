@@ -1,28 +1,27 @@
-.container-scroller
-  %nav.navbar.bg-dark-gradient.col-lg-12.col-12.p-0.fixed-top.navbar-inverse.d-flex.flex-row
-    %a.navbar-brand{:href => root_path}
-      %h3 Attendance
-    - if staff_signed_in?
-      %ul.navbar-nav.ml-lg-5.d-flex.align-items-center.flex-row
-        %li.nav-item
-          %a.nav-link{ :href => '#' }
-            %h5 Standard
-        %li.nav-item
-          %a.nav-link{ :href => '#' }
-            %h5 Staff
-        %li.nav-item
-          %a.nav-link{ :href => '#' }
-            %h5 Students
-      %ul.navbar-nav.ml-lg-auto.d-flex.align-items-center.flex-row
-        %li.nav-item
-          %a.nav-link.profile-pic
-            Hi, #{current_staff.name}!!!
-            = image_tag 'face', class: 'rounded-circle'
-        %li.nav-item
-          %a.nav-link{ :href => destroy_staff_session_path, method: :delete }
-            %h5 Logout
-    - unless staff_signed_in?
-      %ul.navbar-nav.ml-lg-auto.d-flex.align-items-center.flex-row
-        %li.nav-item
-          %a.nav-link{ :href => new_staff_session_path }
-            %h5 Login
+%nav.navbar.bg-dark-gradient.col-lg-12.col-12.p-0.fixed-top.navbar-inverse.d-flex.flex-row
+  %a.navbar-brand{:href => root_path}
+    %h3 Attendance
+  - if staff_signed_in?
+    %ul.navbar-nav.ml-lg-5.d-flex.align-items-center.flex-row
+      %li.nav-item
+        %a.nav-link{ :href => '#' }
+          %h5 Standard
+      %li.nav-item
+        %a.nav-link{ :href => '#' }
+          %h5 Staff
+      %li.nav-item
+        %a.nav-link{ :href => '#' }
+          %h5 Students
+    %ul.navbar-nav.ml-lg-auto.d-flex.align-items-center.flex-row
+      %li.nav-item
+        %a.nav-link.profile-pic
+          Hi, #{current_staff.name}!!!
+          = image_tag 'face', class: 'rounded-circle'
+      %li.nav-item
+        %a.nav-link{ :href => destroy_staff_session_path, method: :delete }
+          %h5 Logout
+  - unless staff_signed_in?
+    %ul.navbar-nav.ml-lg-auto.d-flex.align-items-center.flex-row
+      %li.nav-item
+        %a.nav-link{ :href => new_staff_session_path }
+          %h5 Login
