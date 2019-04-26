@@ -1,7 +1,7 @@
 class SessionsController < Devise::SessionsController
   layout 'login'
 
-  before_action :configure_sign_in_params, only: [:create]
+  before_action :configure_sign_in_params
 
   private
 
