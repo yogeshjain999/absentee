@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_181700) do
+ActiveRecord::Schema.define(version: 2019_04_26_191130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,7 +88,9 @@ ActiveRecord::Schema.define(version: 2019_04_26_181700) do
     t.datetime "updated_at", null: false
     t.string "address"
     t.bigint "school_id"
+    t.bigint "standard_id"
     t.index ["school_id"], name: "index_students_on_school_id"
+    t.index ["standard_id"], name: "index_students_on_standard_id"
   end
 
   add_foreign_key "attendances", "schools"
@@ -97,4 +99,5 @@ ActiveRecord::Schema.define(version: 2019_04_26_181700) do
   add_foreign_key "staffs", "schools"
   add_foreign_key "standards", "schools"
   add_foreign_key "students", "schools"
+  add_foreign_key "students", "standards"
 end
