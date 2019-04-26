@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 2019_04_26_191130) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "name"
     t.string "registration_no"
     t.integer "roll_no"
     t.string "gender"
@@ -87,8 +86,8 @@ ActiveRecord::Schema.define(version: 2019_04_26_191130) do
     t.string "guardian_alternate_mobile_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "address"
     t.bigint "school_id"
+    t.string "address"
     t.bigint "standard_id"
     t.index ["school_id"], name: "index_students_on_school_id"
     t.index ["standard_id"], name: "index_students_on_standard_id"
