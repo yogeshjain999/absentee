@@ -29,10 +29,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
-# Bootstrap
+# Bootstrap and co
 gem 'bootstrap'
 gem 'popper_js'
 gem 'jquery-rails'
+
+# Bootstrap co
+gem "bootstrap_form", ">= 4.2.0"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
