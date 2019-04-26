@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/tilo/smarter_csv.git
+  revision: 2b71026ede14040b8d5868f66d69d7d9b4d93492
+  specs:
+    smarter_csv (2.0.0.pre1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -195,7 +201,6 @@ GEM
       rack (>= 1.5.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    smarter_csv (1.2.6)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -250,7 +255,7 @@ DEPENDENCIES
   shoulda
   shoulda-matchers (~> 3.1)
   sidekiq
-  smarter_csv
+  smarter_csv!
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
