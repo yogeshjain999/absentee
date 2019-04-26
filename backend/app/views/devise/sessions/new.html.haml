@@ -3,8 +3,9 @@
     .card.col-lg-4.offset-lg-4
       .card-block
         %h3.card-title.text-primary.text-left.mb-5.mt-4 Login
+        = render 'shared/flash_messages'
 
-        = bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        = bootstrap_form_for resource, as: resource_name, url: session_path(resource_name) do |f|
           = f.form_group do
             %div.input-group
               %span.input-group-addon
