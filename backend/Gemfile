@@ -31,8 +31,11 @@ gem 'bootstrap'
 gem 'popper_js'
 gem 'jquery-rails'
 
-# Bootstrap co
+# Bootstrap form
 gem "bootstrap_form", ">= 4.2.0"
+
+# Haml
+gem 'haml'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
