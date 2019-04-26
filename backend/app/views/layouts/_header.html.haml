@@ -4,18 +4,18 @@
   - if staff_signed_in?
     %ul.navbar-nav.ml-lg-5.d-flex.align-items-center.flex-row
       %li.nav-item
-        %a.nav-link{ :href => '#' }
+        %a.nav-link{ :href => standards_path }
           %h5 Standard
       %li.nav-item
-        %a.nav-link{ :href => '#' }
+        %a.nav-link{ :href => staffs_path }
           %h5 Staff
       %li.nav-item
-        %a.nav-link{ :href => '#' }
+        %a.nav-link{ :href => students_path }
           %h5 Students
     %ul.navbar-nav.ml-lg-auto.d-flex.align-items-center.flex-row
       %li.nav-item
         %a.nav-link.profile-pic
-          Hi, #{current_staff.name}!!!
+          #{current_staff.name}
           = image_tag 'face', class: 'rounded-circle'
       %li.nav-item
         %a.nav-link{ :href => destroy_staff_session_path, method: :delete }

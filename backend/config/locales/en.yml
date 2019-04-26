@@ -38,3 +38,5 @@ en:
     unauthorized: 'You are not authorized to access this page.'
   attendance:
     created: 'Attendance Created Successfully.'
+  sms:
+    absent: " is absent today."
