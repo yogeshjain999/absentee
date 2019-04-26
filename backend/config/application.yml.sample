@@ -3,6 +3,9 @@ DB_USER:                    "postgres"
 DB_PASSWORD:                "123456"
 DB_POOL:                    "5"
 
+#staff authentication
+X_USER_AUTH_TOKEN: X-User-Auth-Token
+X_USER_JWT_TOKEN:  X-User-Jwt-Token
 
 development:
   DATABASE: 'absentee_development'
