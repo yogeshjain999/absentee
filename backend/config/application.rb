@@ -15,6 +15,7 @@ module Backend
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+    config.time_zone = 'Kolkata'
     config.generators do |g|
       g.factory_bot false
       g.test_framework :rspec
