@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_165342) do
+ActiveRecord::Schema.define(version: 2019_04_26_175319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendances", force: :cascade do |t|
+    t.datetime "date"
+    t.boolean "present"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "standard_id"
+    t.bigint "student_id"
+    t.index ["standard_id"], name: "index_attendances_on_standard_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
+  end
 
   create_table "staffs", force: :cascade do |t|
     t.string "mobile_number", default: "", null: false
@@ -60,4 +71,6 @@ ActiveRecord::Schema.define(version: 2019_04_26_165342) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "attendances", "standards"
+  add_foreign_key "attendances", "students"
 end
