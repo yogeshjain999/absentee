@@ -13,7 +13,7 @@ import * as routes from './routes';
 
 import Login from './containers/login';
 import Navbar from './components/navbar';
-import Root from './containers/root';
+import Root from './components/root';
 
 import NotFound from './components/notFound';
 
@@ -42,22 +42,20 @@ const App = () => (
 
                   <div className="container-fluid">
                     <div className="row">
-                      <div className="content-wrapper">
-                        <Switch>
-                          {
-                            protectedRoutes.map(route => (
-                              <Route
-                                exact
-                                key={route.path}
-                                path={route.path}
-                                component={route.container}
-                              />
-                            ))
-                          }
+                      <Switch>
+                        {
+                          protectedRoutes.map(route => (
+                            <Route
+                              exact
+                              key={route.path}
+                              path={route.path}
+                              component={route.container}
+                            />
+                          ))
+                        }
 
-                          <NotFound />
-                        </Switch>
-                      </div>
+                        <NotFound />
+                      </Switch>
                     </div>
                   </div>
                 </Fragment>
