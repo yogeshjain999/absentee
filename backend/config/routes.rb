@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
-  root "dashboard#index"
 
-  devise_for :staffs, controllers: {
-    sessions: 'sessions'
-  }
-  resources :standards, only: [:index]
-  resources :staffs, only: [:index]
-  resources :students, only: [:index]
+  root "dashboard#index"
+  scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
+
+    devise_for :staffs, controllers: {
+      sessions: 'sessions'
+    }
+
+    resources :standards, only: [:index]
+    resources :staffs, only: [:index]
+    resources :students, only: [:index]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json }do
     resources :standards, only: [:index]

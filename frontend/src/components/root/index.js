@@ -1,66 +1,63 @@
 import React, { useState } from 'react';
-
+import classnames from 'classnames';
 import {
-  Card,
-  Row, Col,
-  Label, Button,
+  Card, Row, Col, Button,
+  TabContent, TabPane, Nav, NavItem, NavLink,
 } from 'reactstrap';
 
-import Select from 'react-select';
-
-const standards = [
-  { value: 1, label: '1' },
-  { value: 2, label: '2' },
-  { value: 3, label: '3' },
-];
-
-const divisions = [
-  { value: 'A', label: 'A' },
-  { value: 'B', label: 'B' },
-  { value: 'C', label: 'C' },
-];
+import StandardSelector from './standardSelector';
+import Students from './students';
+import Texter from './texter';
 
 const Root = () => {
-  const [standard, setStandard] = useState('');
-  const [division, setDivision] = useState('');
+  const [activeTab, setActiveTab] = useState('1');
 
   return (
     <div className="mt-5 col-md-12">
-      <Row>
+      <StandardSelector />
+
+      <Row className="mt-5">
         <Col md="2" />
         <Col md="8">
           <Card body outline color="secondary">
-            <Row>
-              <Col sm="12" md="5" className="mb-3">
-                <Label className="mr-sm-2">Standard</Label>
-                <Select
-                  value={standard}
-                  onChange={e => setStandard(e)}
-                  options={standards}
-                  placeholder="Select Standard"
-                />
-              </Col>
+            <Nav tabs className="mt-3">
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: activeTab === '1' })}
+                  onClick={() => { setActiveTab('1'); }}
+                >
+                  Swiper
+                </NavLink>
+              </NavItem>
 
-              <Col sm="12" md="5">
-                <Label className="mr-sm-2">Division</Label>
-                <Select
-                  value={division}
-                  onChange={e => setDivision(e)}
-                  options={divisions}
-                  placeholder="Select Division"
-                />
-              </Col>
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: activeTab === '2' })}
+                  onClick={() => { setActiveTab('2'); }}
+                >
+                  Texter
+                </NavLink>
+              </NavItem>
+            </Nav>
 
-              <Col sm="12" md="2">
-                <Label className="mr-sm-2">{' '}</Label>
-                <div>
-                  <Button>Submit</Button>
-                </div>
-              </Col>
-            </Row>
+            <TabContent activeTab={activeTab} className="mt-3">
+              <TabPane tabId="1">
+                <Students />
+              </TabPane>
+            </TabContent>
+
+            <TabContent activeTab={activeTab} className="mt-3">
+              <TabPane tabId="2">
+                <Texter />
+              </TabPane>
+            </TabContent>
           </Card>
         </Col>
       </Row>
+
+      <div className="m-5 text-center">
+        <Button color="success">Save</Button>
+      </div>
     </div>
   );
 };
