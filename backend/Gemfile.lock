@@ -81,6 +81,8 @@ GEM
       activemodel (>= 4.2, < 5.3)
       activerecord (>= 4.2, < 5.3)
       request_store (~> 1.0)
+    globalize-accessors (0.2.1)
+      globalize (~> 5.0, >= 5.0.0)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -243,6 +245,7 @@ DEPENDENCIES
   ffaker
   figaro
   globalize
+  globalize-accessors
   haml
   jquery-rails
   listen (>= 3.0.5, < 3.2)
