@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json }do
     resources :standards, only: [:index]
     resources :attendances, only: [:create]
+    resources :students, only: [:index]
 
     namespace :staffs do
       post   'sign_in'  => 'sessions#create'
