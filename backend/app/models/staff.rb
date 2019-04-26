@@ -5,7 +5,7 @@
 #  id                     :bigint(8)        not null, primary key
 #  mobile_number          :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  staff_id               :string           not null
+#  registration_no        :string           not null
 #  name                   :string
 #  designation            :string
 #  reset_password_token   :string
@@ -14,6 +14,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  school_id              :bigint(8)
+#  auth_token             :string
 #
 
 class Staff < ApplicationRecord
