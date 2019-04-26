@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_181700) do
   end
 
   create_table "students", force: :cascade do |t|
+    t.string "name"
     t.string "registration_no"
     t.integer "roll_no"
     t.string "gender"

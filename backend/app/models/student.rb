@@ -13,6 +13,7 @@
 #  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
 #  address                      :string
+#  school_id                    :bigint(8)
 #
 
 class Student < ApplicationRecord
