@@ -7,7 +7,7 @@ class BaseController < ApiController
   end
 
   def render_success(data:, message: nil, status: :ok)
-    render json: { **data, message: message }, status: status
+    render json: { data: data, message: message }, status: status
   end
 
   def handle_api_exceptions(exception)
