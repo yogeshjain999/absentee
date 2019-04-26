@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_26_165342) do
+ActiveRecord::Schema.define(version: 2019_04_26_181700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendances", force: :cascade do |t|
+    t.datetime "date"
+    t.boolean "present"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "standard_id"
+    t.bigint "student_id"
+    t.bigint "school_id"
+    t.index ["school_id"], name: "index_attendances_on_school_id"
+    t.index ["standard_id"], name: "index_attendances_on_standard_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "address"
+    t.string "school_code", null: false
+    t.time "start_time"
+    t.time "close_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "staffs", force: :cascade do |t|
     t.string "mobile_number", default: "", null: false
@@ -26,8 +49,10 @@ ActiveRecord::Schema.define(version: 2019_04_26_165342) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "school_id"
     t.index ["mobile_number"], name: "index_staffs_on_mobile_number", unique: true
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
+    t.index ["school_id"], name: "index_staffs_on_school_id"
   end
 
   create_table "standards", force: :cascade do |t|
@@ -36,6 +61,8 @@ ActiveRecord::Schema.define(version: 2019_04_26_165342) do
     t.time "start_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "school_id"
+    t.index ["school_id"], name: "index_standards_on_school_id"
   end
 
   create_table "student_translations", force: :cascade do |t|
@@ -58,6 +85,14 @@ ActiveRecord::Schema.define(version: 2019_04_26_165342) do
     t.string "guardian_alternate_mobile_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "school_id"
+    t.index ["school_id"], name: "index_students_on_school_id"
   end
 
+  add_foreign_key "attendances", "schools"
+  add_foreign_key "attendances", "standards"
+  add_foreign_key "attendances", "students"
+  add_foreign_key "staffs", "schools"
+  add_foreign_key "standards", "schools"
+  add_foreign_key "students", "schools"
 end
