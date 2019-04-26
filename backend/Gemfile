@@ -31,6 +31,8 @@ gem 'bootstrap'
 gem 'popper_js'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+gem 'globalize'
+gem 'globalize-accessors'
 
 # Bootstrap form
 gem "bootstrap_form", ">= 4.2.0"
