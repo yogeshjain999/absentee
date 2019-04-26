@@ -40,6 +40,9 @@ gem "bootstrap_form", ">= 4.2.0"
 # Haml
 gem 'haml'
 
+#Devise
+gem 'devise'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'figaro'
@@ -47,7 +50,7 @@ gem 'redis'
 gem 'sidekiq'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'smarter_csv'
+gem 'smarter_csv', github: 'tilo/smarter_csv'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
