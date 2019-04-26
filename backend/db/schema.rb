@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_191130) do
     t.string "guardian_alternate_mobile_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
     t.bigint "school_id"
     t.bigint "standard_id"
     t.index ["school_id"], name: "index_students_on_school_id"
