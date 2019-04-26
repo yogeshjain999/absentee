@@ -1,0 +1,26 @@
+.container-scroller
+  %nav.navbar.bg-primary-gradient.col-lg-12.col-12.p-0.fixed-top.navbar-inverse.d-flex.flex-row
+    %a.navbar-brand{:href => "#"} Absentee
+    %ul.navbar-nav.ml-auto
+      - if staff_signed_in?
+        %ul.navbar-nav.ml-lg-auto.d-flex.align-items-center.flex-row
+          %li.nav-item
+            %a.nav-link.profile-pic
+              Hi, #{current_staff.name}!!!
+              = image_tag 'face', class: 'rounded-circle'
+      %li.nav-item.active
+        %a.nav-link{:href => root_path}
+          Home
+        %span.sr-only (current)
+      - if staff_signed_in?
+        %li.nav-item
+          %a.nav-link{ :href => '#' } Standard
+        %li.nav-item
+          %a.nav-link{ :href => '#' } Staff
+        %li.nav-item
+          %a.nav-link{ :href => '#' } Students
+        %li.nav-item
+          %a.nav-link{ :href => destroy_staff_session_path, method: :delete } Logout
+      - else
+        %li.nav-item
+          %a.nav-link{ :href => new_staff_session_path } Login
