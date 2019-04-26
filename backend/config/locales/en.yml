@@ -36,3 +36,5 @@ en:
     signed_out: 'Signed out successfully.'
   error:
     unauthorized: 'You are not authorized to access this page.'
+  attendance:
+    created: 'Attendance Created Successfully.'
