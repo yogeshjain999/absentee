@@ -12,8 +12,8 @@ class Attendance::Create
   def call
     students_ids = Student.where(standard_id: @standard.id, school_id: @school.id).pluck(:id)
     absent_student_ids = Student.where(roll_no: @absent_roll_numbers, standard_id: @standard.id, school_id: @school.id).pluck(:id)
-    students_attendance_taken_ids = Attendance.where(date: @date, standard_id: @standard_id, school_id: @school.id).pluck(:student_id)
-    absent_student_ids = absent_student_ids - students_attendance_taken_ids
+    # students_attendance_taken_ids = Attendance.where(date: @date, standard_id: @standard_id, school_id: @school.id).pluck(:student_id)
+    # absent_student_ids = absent_student_ids - students_attendance_taken_ids
     attendances = students_ids.collect do |student_id|
                     Attendance.new(
                       present: !(absent_student_ids.include?(student_id)),
