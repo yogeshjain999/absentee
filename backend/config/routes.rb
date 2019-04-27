@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root :to => redirect("/en/staffs/sign_in")
+  root "dashboard#index"
   scope "/:locale", locale: /#{I18n.available_locales.join("|")}/ do
 
     devise_for :staffs, controllers: {
