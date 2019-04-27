@@ -30,7 +30,8 @@ class StudentDatatable
         student.roll_no,
         student.name,
         student.guardian_name,
-        student.guardian_mobile_no
+        student.guardian_mobile_no,
+        student.id.to_s
       ]
     end
     arr
