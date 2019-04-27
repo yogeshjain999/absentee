@@ -56,7 +56,7 @@ const StandardSelector = (props) => {
             <Label className="mr-sm-2">Standard</Label>
             <Select
               value={standard}
-              onChange={e => setStandard(e)}
+              onChange={(e) => { setStandard(e); setDivision({}); }}
               options={standardOptions()}
               placeholder="Select Standard"
               isLoading={loading}

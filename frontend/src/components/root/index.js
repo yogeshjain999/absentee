@@ -16,7 +16,7 @@ import StandardSelector from './standardSelector';
 import Students from './students';
 import Texter from './texter';
 
-const Attendance = () => {
+const Attendance = (props) => {
   const [activeTab, setActiveTab] = useState('1');
 
   return (
@@ -25,6 +25,13 @@ const Attendance = () => {
         <Col md="2" />
         <Col md="8">
           <Card body outline color="secondary">
+            <h6
+              className="text-center text-success"
+              hidden={props.students.attendance_taken !== true}
+            >
+              Attendance has already been taken!!!
+            </h6>
+
             <Nav tabs className="mt-3">
               <NavItem>
                 <NavLink
@@ -61,10 +68,22 @@ const Attendance = () => {
       </Row>
 
       <div className="m-5 text-center">
-        <Button color="success">Save</Button>
+        <Button
+          color="success"
+          disabled={!props.students.attendance_taken}
+        >
+          Save
+        </Button>
       </div>
     </Fragment>
   );
+};
+
+Attendance.propTypes = {
+  students: PropTypes.shape({
+    students: PropTypes.arrayOf(PropTypes.object).isRequired,
+    attendance_taken: PropTypes.bool,
+  }).isRequired,
 };
 
 const Root = (props) => {
@@ -74,6 +93,7 @@ const Root = (props) => {
     const promise = Api.students(standardId);
 
     setLoading(true);
+
     promise
       .then((response) => {
         props.importStudents(response.data.data);
@@ -89,7 +109,7 @@ const Root = (props) => {
       {
         loading
           ? <div />
-          : <Attendance />
+          : <Attendance students={props.students} />
       }
     </div>
   );
@@ -106,6 +126,10 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Root.propTypes = {
+  students: PropTypes.shape({
+    attendance_taken: PropTypes.bool,
+    students: PropTypes.arrayOf(PropTypes.object).isRequired,
+  }).isRequired,
   importStudents: PropTypes.func.isRequired,
 };
 
