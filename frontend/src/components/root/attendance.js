@@ -78,7 +78,11 @@ const Attendance = (props) => {
 
             <TabContent activeTab={activeTab} className="mt-3">
               <TabPane tabId="2">
-                <Texter disabled={attendanceTaken} absentStudents={props.absentStudents} />
+                <Texter
+                  disabled={attendanceTaken}
+                  absentStudents={props.absentStudents}
+                  standardId={props.standardId}
+                />
               </TabPane>
             </TabContent>
           </Card>

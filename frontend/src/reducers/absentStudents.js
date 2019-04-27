@@ -20,8 +20,10 @@ const students = (state = {}, action) => {
       return newState;
     }
     case actions.BULK_ABSENTEE: {
-      storageHelpers.setItem('absentStudents', action.array);
-      return [...action.array];
+      const newState = { ...state, [action.standardId]: action.array };
+
+      storageHelpers.setItem('absentStudents', newState);
+      return newState;
     }
     default:
       return state;
