@@ -55,7 +55,7 @@ ConfirmButton.defaultProps = {
 
 ConfirmButton.propTypes = {
   title: PropTypes.string,
-  students: PropTypes.arrayOf(PropTypes.object).isRequired,
+  students: PropTypes.arrayOf(PropTypes.number).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.string,

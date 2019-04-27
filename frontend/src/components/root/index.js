@@ -1,111 +1,12 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
-
-import {
-  Card, Row, Col,
-  TabContent, TabPane, Nav, NavItem, NavLink,
-} from 'reactstrap';
 
 import Api from '../../api';
-
 import studentsActions from '../../actionCreators/students';
 
 import StandardSelector from './standardSelector';
-import Students from './students';
-import Texter from './texter';
-import ConfirmationButton from './confirmationButton';
-
-const Attendance = (props) => {
-  const [submitting, setSubmitting] = useState(false);
-  const [activeTab, setActiveTab] = useState('1');
-
-  const submitAttendance = () => {
-    setSubmitting(true);
-
-    Api.submitAttendance(props.absentStudents, props.standardId)
-      .then(() => setSubmitting(false))
-      .catch(() => setSubmitting(false));
-  };
-
-  const buttonClasses = () => classnames({ 'btn-loading': submitting });
-
-  return (
-    <Fragment>
-      <Row className="mt-5">
-        <Col md="2" />
-        <Col md="8">
-          <Card body outline color="secondary">
-            <h6
-              className="text-center text-success"
-              hidden={props.students.attendance_taken !== true}
-            >
-              Attendance has already been taken!!!
-            </h6>
-
-            <Nav tabs className="mt-3">
-              <NavItem>
-                <NavLink
-                  className={classnames({ active: activeTab === '1' })}
-                  onClick={() => { setActiveTab('1'); }}
-                >
-                  Via Student Cards
-                </NavLink>
-              </NavItem>
-
-              <NavItem>
-                <NavLink
-                  className={classnames({ active: activeTab === '2' })}
-                  onClick={() => { setActiveTab('2'); }}
-                >
-                  Via Text
-                </NavLink>
-              </NavItem>
-            </Nav>
-
-            <TabContent activeTab={activeTab} className="mt-3">
-              <TabPane tabId="1">
-                <Students />
-              </TabPane>
-            </TabContent>
-
-            <TabContent activeTab={activeTab} className="mt-3">
-              <TabPane tabId="2">
-                <Texter />
-              </TabPane>
-            </TabContent>
-          </Card>
-        </Col>
-      </Row>
-
-      <div className="m-5 text-center">
-        <ConfirmationButton
-          className={buttonClasses()}
-          students={props.students.students}
-          onConfirm={submitAttendance}
-          color="success"
-          disabled={
-            props.students.attendance_taken === undefined
-            || props.students.attendance_taken === true
-          }
-        >
-          Confirm
-        </ConfirmationButton>
-      </div>
-    </Fragment>
-  );
-};
-
-Attendance.propTypes = {
-  students: PropTypes.shape({
-    students: PropTypes.arrayOf(PropTypes.object).isRequired,
-    attendance_taken: PropTypes.bool,
-  }).isRequired,
-
-  absentStudents: PropTypes.arrayOf(PropTypes.number).isRequired,
-  standardId: PropTypes.number.isRequired,
-};
+import Attendance from './attendance';
 
 const Root = (props) => {
   const [loading, setLoading] = useState(false);

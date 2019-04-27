@@ -24,7 +24,7 @@ const Api = {
 
   submitAttendance(rollNumbers, standardId) {
     return axios.post(routes.ATTENDANCE_API, {
-      roll_numbers: rollNumbers,
+      roll_nos: rollNumbers,
       standard_id: standardId,
       date: new Date(),
     });

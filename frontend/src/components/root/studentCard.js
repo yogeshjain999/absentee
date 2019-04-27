@@ -37,6 +37,7 @@ const StudentCard = (props) => {
         grid={[50, 50]}
         bounds={{ left: 0, right: 50 }}
         onStop={onStop}
+        disabled={props.disabled}
       >
         <Card
           body
@@ -66,6 +67,7 @@ StudentCard.propTypes = {
   name: PropTypes.string.isRequired,
   roll_no: PropTypes.number.isRequired,
   isAbsent: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   markAbsent: PropTypes.func.isRequired,
   markPresent: PropTypes.func.isRequired,
 };

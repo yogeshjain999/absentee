@@ -18,6 +18,7 @@ const Texter = (props) => {
         <Col md="2" />
         <Col md="8">
           <Input
+            disabled={props.disabled}
             type="textarea"
             name="text"
             id="numbers"
@@ -43,7 +44,12 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
+Texter.defaultProps = {
+  disabled: true,
+};
+
 Texter.propTypes = {
+  disabled: PropTypes.bool,
   absentStudents: PropTypes.arrayOf(PropTypes.number).isRequired,
   bulkAbsentee: PropTypes.func.isRequired,
 };

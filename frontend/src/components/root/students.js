@@ -17,6 +17,7 @@ const Students = props => (
                 props.students.students.map(student => (
                   <StudentCard
                     key={student.roll_no}
+                    disabled={props.attendanceTaken}
                     isAbsent={props.absentStudents.indexOf(student.roll_no) >= 0}
                     {...student}
                   />
@@ -37,6 +38,10 @@ const mapStateToProps = state => ({
   absentStudents: state.absentStudents,
 });
 
+Students.defaultProps = {
+  attendanceTaken: false,
+};
+
 Students.propTypes = {
   students: PropTypes.shape({
     students: PropTypes.arrayOf(PropTypes.shape({
@@ -45,6 +50,7 @@ Students.propTypes = {
     })),
   }).isRequired,
   absentStudents: PropTypes.arrayOf(PropTypes.number).isRequired,
+  attendanceTaken: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, null)(Students);
