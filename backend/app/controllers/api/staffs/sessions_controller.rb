@@ -3,8 +3,8 @@ class Api::Staffs::SessionsController < ::BaseController
   skip_before_action :authenticate_resource_from_token!, only: [:create]
 
   def create
-    staff = Staff.find_by(mobile_number: params[:staff][:mobile_number])
-    if staff && staff.valid_password?(params[:staff][:password])
+    staff = Staff.find_by(mobile_number: params[:session][:mobile_number])
+    if staff && staff.valid_password?(params[:session][:password])
       sign_in staff, store: false
       render_success(data: { mobile_number: staff.mobile_number }, message: I18n.t('staff.signed_in'), status: :created)
     else
