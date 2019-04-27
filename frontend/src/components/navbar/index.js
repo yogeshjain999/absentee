@@ -1,17 +1,31 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import {
   Collapse,
   Navbar,
   NavbarToggler,
+  NavItem,
   Nav,
 } from 'reactstrap';
 
 import * as routes from '../../routes';
+import sessionHelpers from '../../utils/sessionHelpers';
+import Api from '../../api';
 
-const DefaultNavbar = () => {
+const DefaultNavbar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const logOut = (e) => {
+    e.preventDefault();
+
+    Api.logOut().then(() => {
+      sessionHelpers.logOut();
+      window.location.href = routes.LOGIN_URL; // eslint-disable-line
+    });
+  };
 
   return (
     <div>
@@ -24,7 +38,20 @@ const DefaultNavbar = () => {
 
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavLink to={routes.LOGIN_URL} className="nav-link">Log Out</NavLink>
+            <NavItem>
+              <NavLink to="#" className="nav-link">
+                Hi
+                {' '}
+                {props.currentUser.mobileNumber}
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <Nav className="ml-auto" navbar>
+                <NavLink to={routes.LOGIN_URL} className="nav-link" onClick={logOut}>
+                  Log Out
+                </NavLink>
+              </Nav>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
@@ -32,4 +59,14 @@ const DefaultNavbar = () => {
   );
 };
 
-export default DefaultNavbar;
+const mapStateToProps = state => ({
+  currentUser: state.currentUser,
+});
+
+DefaultNavbar.propTypes = {
+  currentUser: PropTypes.shape({
+    mobileNumber: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default connect(mapStateToProps, null)(DefaultNavbar);

@@ -1,0 +1,26 @@
+body,html{
+	font-family: 'Poppins', sans-serif;
+	font-weight: 400;
+	font-size: 0.9rem;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+body {
+	background-color: #f2f7f8 !important;
+}
+
+.content-wrapper {
+	height: 100vh;
+  background-color: #f2f7f8;
+}
+
+.btn.btn-loading {
+  color: transparent;
+  background-size: 20px 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  cursor: default;
+  background-image: url('./assets/images/loading-green.gif');
+}

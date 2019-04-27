@@ -11,13 +11,16 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import store from './reducers';
 import * as routes from './routes';
 
-import Login from './containers/login';
+import Login from './components/login';
 import Navbar from './components/navbar';
 import Root from './components/root';
 
 import NotFound from './components/notFound';
 
+import axiosInitializer from './axiosInitializer';
 import sessionHelpers from './utils/sessionHelpers';
+
+axiosInitializer.load();
 
 const protectedRoutes = [
   { path: '/', container: Root },
@@ -26,7 +29,7 @@ const protectedRoutes = [
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
-      <Fragment>
+      <div className="content-wrapper">
         <Switch>
           <Route exact path={routes.LOGIN_URL} component={Login} />
 
@@ -63,7 +66,7 @@ const App = () => (
             }}
           />
         </Switch>
-      </Fragment>
+      </div>
     </BrowserRouter>
 
     <ToastContainer />

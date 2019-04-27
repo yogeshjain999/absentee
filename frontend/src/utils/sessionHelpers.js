@@ -4,6 +4,7 @@ const sessionHelpers = {
   getUserFrom: response => ({
     jwtToken: response.headers['x-user-jwt-token'],
     authToken: response.headers['x-user-auth-token'],
+    mobileNumber: response.data.data.mobile_number,
   }),
 
   logIn: user => storageHelpers.setItem('currentUser', user),
