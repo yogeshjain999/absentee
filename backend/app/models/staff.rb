@@ -28,5 +28,5 @@ class Staff < ApplicationRecord
   has_many :standards, through: :st
   has_and_belongs_to_many :standards, join_table: :staffs_standards
 
-  validates :mobile_number, uniqueness: true
+  validates :mobile_number, :registration_no, uniqueness: true
 end

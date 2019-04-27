@@ -26,14 +26,22 @@ class Import::Staff
   end
 
   def prepare_data
-    @staff_data = @data.collect do |data|
-      Staff.new(data.merge({school_id: school_id, password: '12345678'}))
+    @staff_data = @data.collect.with_index do |data, index|
+      if data[:mobile_number] !~ /^[6-9]\d{9}$/
+        errors.add(:base, {"#{index}": "Mobile no. format not correct, line no: #{index + 1}"})
+      else
+        Staff.new(data.merge({school_id: school_id, password: '12345678'}))
+      end
     end
+    errors.blank?
   end
 
   def import_records
-    result = Staff.bulk_import!(@staff_data, recursive: true)
+    result = Staff.bulk_import!(@staff_data, recursive: true, validate_uniqueness: true)
     @result = { records_added: result.ids.count }
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+    errors.add(:base, {"1": "Duplicate mobile_number OR registration_no found"})
+    false
   end
 
   def options

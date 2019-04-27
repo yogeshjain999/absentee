@@ -23,6 +23,11 @@ class Student < ApplicationRecord
   has_many :attendances, class_name: "Attendance"
   belongs_to :standard, class_name: "Standard", foreign_key: "standard_id"
   belongs_to :school, class_name: "School", foreign_key: "school_id"
+
+  validates :registration_no, :roll_no, :gender, :dob, :guardian_name,
+    :guardian_mobile_no, presence: true
+
+  validates :registration_no, uniqueness: true
 end
 
 def attendance_status

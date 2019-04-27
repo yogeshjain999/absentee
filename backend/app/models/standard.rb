@@ -18,6 +18,8 @@ class Standard < ApplicationRecord
   belongs_to :school, class_name: "School", foreign_key: "school_id"
   has_and_belongs_to_many :staffs, join_table: :staffs_standards
 
+  validates :standard, uniqueness: {scope: [:section]}
+
   def name
     self.standard.to_s + ' ' + self.section.to_s
   end

@@ -53,10 +53,10 @@ const StandardSelector = (props) => {
       <Col md="8">
         <Row>
           <Col sm="12" md="5" className="mb-3">
-            <Label className="mr-sm-2">Standard</Label>
+            <Label className="mr-sm-2">Select Standard</Label>
             <Select
               value={standard}
-              onChange={e => setStandard(e)}
+              onChange={(e) => { setStandard(e); setDivision({}); }}
               options={standardOptions()}
               placeholder="Select Standard"
               isLoading={loading}
@@ -64,7 +64,7 @@ const StandardSelector = (props) => {
           </Col>
 
           <Col sm="12" md="5">
-            <Label className="mr-sm-2">Division</Label>
+            <Label className="mr-sm-2">Select Division</Label>
             <Select
               value={division}
               onChange={e => setDivision(e)}

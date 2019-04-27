@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Card, CardTitle, CardText } from 'reactstrap';
 import Draggable from 'react-draggable';
 
-import studentActions from '../../actionCreators/students';
+import attendanceActions from '../../actionCreators/attendance';
 
 const StudentCard = (props) => {
   const [color, setColor] = useState(props.isAbsent ? 'danger' : 'secondary');
@@ -20,10 +20,10 @@ const StudentCard = (props) => {
   const onStop = (e, card) => {
     if (card.lastX > 0) { // Left Toggle
       setColor('danger');
-      props.markAbsent({ roll_no: props.roll_no });
+      props.markAbsent({ roll_no: props.roll_no, standardId: props.standardId });
     } else { // Right Toggle
       setColor('secondary');
-      props.markPresent({ roll_no: props.roll_no });
+      props.markPresent({ roll_no: props.roll_no, standardId: props.standardId });
     }
   };
 
@@ -37,6 +37,7 @@ const StudentCard = (props) => {
         grid={[50, 50]}
         bounds={{ left: 0, right: 50 }}
         onStop={onStop}
+        disabled={props.disabled}
       >
         <Card
           body
@@ -55,17 +56,19 @@ const StudentCard = (props) => {
 
 const mapDispatchToProps = dispatch => ({
   markPresent(student) {
-    dispatch(studentActions.markPresent(student));
+    dispatch(attendanceActions.markPresent(student));
   },
   markAbsent(student) {
-    dispatch(studentActions.markAbsent(student));
+    dispatch(attendanceActions.markAbsent(student));
   },
 });
 
 StudentCard.propTypes = {
   name: PropTypes.string.isRequired,
   roll_no: PropTypes.number.isRequired,
+  standardId: PropTypes.number.isRequired,
   isAbsent: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
   markAbsent: PropTypes.func.isRequired,
   markPresent: PropTypes.func.isRequired,
 };

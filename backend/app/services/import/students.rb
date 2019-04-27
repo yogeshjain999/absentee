@@ -26,16 +26,24 @@ class Import::Students
   end
 
   def prepare_data
-    @student_data = @data.collect do |data|
-      standard = Standard.find_by(standard: data[:standard], section: data[:section])
-      data = data.merge(standard_id: standard.id, school_id: school_id).except(:standard, :section)
-      Student.new(data)
+    @student_data = @data.collect.with_index do |data, index|
+      if data[:guardian_mobile_no] !~ /^[6-9]\d{9}$/ || data[:guardian_alternate_mobile_no] !~ /^[6-9]\d{9}$/
+        errors.add(:base, {"#{index}": "Mobile no. format not correct, line no: #{index + 1}"})
+      else
+        standard = Standard.find_by(standard: data[:standard], section: data[:section])
+        data = data.merge(standard_id: standard.id, school_id: school_id).except(:standard, :section)
+        Student.new(data)
+      end
     end
+    errors.blank?
   end
 
   def import_records
-    result = Student.bulk_import!(@student_data, recursive: true)
+    result = Student.bulk_import!(@student_data, recursive: true, validate_uniqueness: true)
     @result = { records_added: result.ids.count }
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+    errors.add(:base, {"1": "Duplicate registration_no found, assign new registration_no"})
+    false
   end
 
   def options
