@@ -5,6 +5,14 @@ jQuery ->
   initializeDatatable = (standard) ->
     $("#dttb").DataTable({
       destroy: true,
+      'ajax': '/en/students?standard_id='+ standard,
+      "columnDefs": [{
+        "targets": 5,
+        render: (data, type, full, meta) ->
+          '<button type=button style=border:1px solid black; background-color: transparent;>
+          <i class="fa fa-trash" ></i>
+          </button>'
+      }]
       'ajax': '/'+locale+'/students?standard_id='+ standard,
     });
 

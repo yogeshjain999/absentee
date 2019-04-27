@@ -29,3 +29,8 @@ class Student < ApplicationRecord
 
   validates :registration_no, uniqueness: true
 end
+
+def attendance_status
+  attandance = attendances.where(date: Date.today())
+  attandance.count == 1 ? attandance.first.present : ""
+end

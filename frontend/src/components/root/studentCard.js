@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Card, CardTitle, CardText } from 'reactstrap';
 import Draggable from 'react-draggable';
 
-import studentActions from '../../actionCreators/students';
+import attendanceActions from '../../actionCreators/attendance';
 
 const StudentCard = (props) => {
   const [color, setColor] = useState(props.isAbsent ? 'danger' : 'secondary');
@@ -55,10 +55,10 @@ const StudentCard = (props) => {
 
 const mapDispatchToProps = dispatch => ({
   markPresent(student) {
-    dispatch(studentActions.markPresent(student));
+    dispatch(attendanceActions.markPresent(student));
   },
   markAbsent(student) {
-    dispatch(studentActions.markAbsent(student));
+    dispatch(attendanceActions.markAbsent(student));
   },
 });
 

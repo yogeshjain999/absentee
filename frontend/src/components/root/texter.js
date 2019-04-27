@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col, Input } from 'reactstrap';
 
-import studentActions from '../../actionCreators/students';
+import attendanceActions from '../../actionCreators/attendance';
 
 const Texter = (props) => {
   const [absentStudents, setAbsentStudents] = useState(props.absentStudents.join(', '));
@@ -25,7 +25,7 @@ const Texter = (props) => {
             value={absentStudents}
             onChange={e => setAbsentStudents(e.target.value)}
             onBlur={() => props.bulkAbsentee(absentStudents.split(',').map(i => parseInt(i, 10)).filter(i => !Number.isNaN(i)))}
-            placeholder="Please enter roll numbers of absent students (For eg: 1, 2, 3)"
+            placeholder="Please enter Roll numbers of absent students ONLY (For eg: 1, 2, 3)"
           />
         </Col>
       </Row>
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   bulkAbsentee(array) {
-    dispatch(studentActions.bulkAbsentee(array));
+    dispatch(attendanceActions.bulkAbsentee(array));
   },
 });
 
