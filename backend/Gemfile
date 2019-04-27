@@ -43,6 +43,8 @@ gem 'haml'
 
 #Devise
 gem 'devise'
+gem 'jquery-datatables'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

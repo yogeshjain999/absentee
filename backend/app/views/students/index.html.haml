@@ -17,7 +17,7 @@
             = select_tag 'standard', options_for_select(@standards.collect{ |s| [s.name, s.id] }), class: 'standard-select'
         .card-description
 
-        %table.table.table-striped
+        %table.table.table-striped#dttb
           %thead
             %th= t 'students.reg_no'
             %th= t 'students.roll_no'
@@ -25,13 +25,6 @@
             %th= t 'students.guardian_name'
             %th= t 'students.guardian_mobile'
           %tbody
-            - @records.each do |record|
-              %tr
-                %td= record.registration_no
-                %td= record.roll_no
-                %td= record.name
-                %td= record.guardian_name
-                %td= record.guardian_mobile_no.to_s + ' / ' + record.guardian_alternate_mobile_no
           = pagy_bootstrap_responsive_nav(@pagy).html_safe
   #menu1.tab-pane.container.fade
     .card
