@@ -25,7 +25,7 @@ const Texter = (props) => {
             rows={10}
             value={absentStudents}
             onChange={e => setAbsentStudents(e.target.value)}
-            onBlur={() => props.bulkAbsentee(absentStudents.split(',').map(i => parseInt(i, 10)).filter(i => !Number.isNaN(i)))}
+            onBlur={() => props.bulkAbsentee(absentStudents.split(',').map(i => parseInt(i, 10)).filter(i => !Number.isNaN(i)), props.standardId)}
             placeholder="Please enter Roll numbers of absent students ONLY (For eg: 1, 2, 3)"
           />
         </Col>
@@ -35,8 +35,8 @@ const Texter = (props) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  bulkAbsentee(array) {
-    dispatch(attendanceActions.bulkAbsentee(array));
+  bulkAbsentee(array, standardId) {
+    dispatch(attendanceActions.bulkAbsentee(array, standardId));
   },
 });
 
@@ -48,6 +48,7 @@ Texter.propTypes = {
   disabled: PropTypes.bool,
   absentStudents: PropTypes.arrayOf(PropTypes.number).isRequired,
   bulkAbsentee: PropTypes.func.isRequired,
+  standardId: PropTypes.number.isRequired,
 };
 
 export default connect(null, mapDispatchToProps)(Texter);
