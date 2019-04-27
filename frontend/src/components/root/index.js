@@ -70,7 +70,7 @@ const Attendance = (props) => {
       <div className="m-5 text-center">
         <Button
           color="success"
-          disabled={!props.students.attendance_taken}
+          disabled={props.students.attendance_taken === undefined || props.students.attendance_taken === true}
         >
           Save
         </Button>
@@ -108,7 +108,7 @@ const Root = (props) => {
       <StandardSelector loadStudents={loadStudents} />
       {
         loading
-          ? <div />
+          ? <div className="center-spinner">Loading...</div>
           : <Attendance students={props.students} />
       }
     </div>

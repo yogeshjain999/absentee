@@ -7,6 +7,8 @@ import {
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.min.css';
+import './assets/stylesheets/_center_spinner.scss';
+
 
 import store from './reducers';
 import * as routes from './routes';
