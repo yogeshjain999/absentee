@@ -13,6 +13,7 @@
 #  remember_created_at    :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  auth_token             :string
 #  school_id              :bigint(8)
 #  auth_token             :string
 #

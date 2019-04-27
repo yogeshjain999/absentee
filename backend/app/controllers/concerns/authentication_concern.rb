@@ -15,7 +15,7 @@ module AuthenticationConcern
     return unless @jwt_token && @auth_token
 
     @payload  = JWT.decode(@jwt_token, @auth_token).first
-    @resource = payload['resource_type'].constantize_with_care(['User']).where(
+    @resource = payload['resource_type'].constantize_with_care(['Staff']).where(
       id: payload['resource_id']
     ).first
     authenticate_and_login
@@ -44,7 +44,7 @@ module AuthenticationConcern
       sign_in resource, store: false
       current_staff.remember_me = true if payload['remember']
     else
-      @error = I18n.t('user.invalid_credentials') and render_unauthorized
+      @error = I18n.t('staff.invalid_credentials') and render_unauthorized
     end
   end
 
