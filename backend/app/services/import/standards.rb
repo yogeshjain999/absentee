@@ -35,8 +35,11 @@ class Import::Standards
   end
 
   def import_records
-    result = Standard.bulk_import!(@standard_data, recursive: true)
+    result = Standard.bulk_import!(@standard_data, recursive: true, validate_uniqueness: true)
     @result = { records_added: result.ids.count }
+  rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotUnique
+    errors.add(:base, {"1": "Duplicate Standard record found"})
+    false
   end
 
   def options

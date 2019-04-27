@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       sessions: 'sessions'
     }
 
-    resources :standards, only: [:index]
-    resources :staffs, only: [:index]
+    resources :standards, only: [:index, :create]
+    resources :staffs, only: [:index, :create]
     resources :students, only: [:index, :create]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
