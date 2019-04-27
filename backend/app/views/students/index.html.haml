@@ -14,7 +14,7 @@
           .col-md-2
             %h5= t 'global.standard'
           .col-md-6
-            = select_tag 'standard', options_for_select(@standards.collect{ |s| [s.name, s.id] }), class: 'standard-select'
+            = select_tag 'standard', options_for_select(@standards.collect{ |s| [s.name, s.id] }), class: 'standard-select', include_blank: 'select class'
         .card-description
 
         %table.table.table-striped#dttb
