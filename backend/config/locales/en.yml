@@ -40,6 +40,7 @@ en:
     created: 'Attendance Created Successfully.'
   sms:
     absent: " is absent today."
+    admin_alert: "Attendance for class %{standard} is not taken for %{date}"
   global:
     standard: 'Standard'
     attendance: 'Attendance'
