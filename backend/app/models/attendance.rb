@@ -10,6 +10,7 @@
 #  standard_id :bigint(8)
 #  student_id  :bigint(8)
 #  school_id   :bigint(8)
+#  sms_sent    :boolean
 #
 
 class Attendance < ApplicationRecord
