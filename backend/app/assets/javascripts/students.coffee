@@ -13,6 +13,7 @@ jQuery ->
           <i class="fa fa-trash" ></i>
           </button>'
       }]
+      'ajax': '/'+locale+'/students?standard_id='+ standard,
     });
 
   initializeDatatable("")

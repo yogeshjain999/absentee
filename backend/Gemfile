@@ -34,6 +34,7 @@ gem 'font-awesome-rails'
 gem 'globalize'
 gem 'globalize-accessors'
 gem 'jwt'
+gem 'rack-cors', require: 'rack/cors'
 
 # Bootstrap form
 gem "bootstrap_form", ">= 4.2.0"
@@ -57,6 +58,8 @@ gem 'smarter_csv', github: 'tilo/smarter_csv'
 gem 'activerecord-import'
 gem 'pagy'
 gem "select2-rails"
+
+gem 'whenever'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

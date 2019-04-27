@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_042210) do
+ActiveRecord::Schema.define(version: 2019_04_27_042651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,13 @@ ActiveRecord::Schema.define(version: 2019_04_27_042210) do
     t.index ["school_id"], name: "index_staffs_on_school_id"
   end
 
+  create_table "staffs_standards", id: false, force: :cascade do |t|
+    t.bigint "standard_id", null: false
+    t.bigint "staff_id", null: false
+    t.index ["staff_id", "standard_id"], name: "index_staffs_standards_on_staff_id_and_standard_id"
+    t.index ["standard_id", "staff_id"], name: "index_staffs_standards_on_standard_id_and_staff_id"
+  end
+
   create_table "standard_attendances", force: :cascade do |t|
     t.datetime "date"
     t.integer "no_of_student_present"
@@ -91,6 +98,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_042210) do
   end
 
   create_table "students", force: :cascade do |t|
+    t.string "name"
     t.string "registration_no"
     t.integer "roll_no"
     t.string "gender"
@@ -100,9 +108,9 @@ ActiveRecord::Schema.define(version: 2019_04_27_042210) do
     t.string "guardian_alternate_mobile_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
     t.bigint "school_id"
     t.bigint "standard_id"
-    t.string "address"
     t.index ["school_id"], name: "index_students_on_school_id"
     t.index ["standard_id"], name: "index_students_on_standard_id"
   end
