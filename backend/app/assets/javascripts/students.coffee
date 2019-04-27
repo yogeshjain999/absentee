@@ -2,6 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
-  $("#dttb").DataTable({
-    'ajax': '/en/students',
-  });
+  initializeDatatable = (standard) ->
+    $("#dttb").DataTable({
+      destroy: true,
+      'ajax': '/en/students?standard_id='+ standard,
+    });
+
+  initializeDatatable("")
+  $('.standard-select').on 'change', (e) ->
+    initializeDatatable(e.target.value)
+    return

@@ -3,7 +3,11 @@ class StudentDatatable
 
   def initialize(view)
     @view = view
-    @students = Student.all
+    if @view.params['standard_id'].present?
+      @students =Student.where(standard_id: @view.params['standard_id'])
+    else
+      @students = Student.all
+    end
     @total_count = @students.count
   end
 
