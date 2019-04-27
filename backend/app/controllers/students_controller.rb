@@ -3,4 +3,16 @@ class StudentsController < ApplicationController
     @standards = Standard.all
     @pagy, @records = pagy(Student.all)
   end
+
+  def create
+    service = Import::Students.new(params[:student][:file].tempfile, current_school.id)
+    if service.call
+      redirect_to students_path
+    else
+      @standards = Standard.all
+      @pagy, @records = pagy(Student.all)
+      @errors = service.errors.full_messages.collect(&:values).flatten
+      render 'errors'
+    end
+  end
 end

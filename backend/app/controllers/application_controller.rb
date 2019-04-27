@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
     parsed_locale = params[:locale]
     I18n.available_locales.map(&:to_s).include?(parsed_locale) ? parsed_locale : nil
   end
+
+  def current_school
+    @current_school ||= School.first
+  end
 end
