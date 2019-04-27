@@ -25,7 +25,7 @@ const Texter = (props) => {
             value={absentStudents}
             onChange={e => setAbsentStudents(e.target.value)}
             onBlur={() => props.bulkAbsentee(absentStudents.split(',').map(i => parseInt(i, 10)).filter(i => !Number.isNaN(i)))}
-            placeholder="Please enter roll numbers of absent students (For eg: 1, 2, 3)"
+            placeholder="Please enter Roll numbers of absent students ONLY (For eg: 1, 2, 3)"
           />
         </Col>
       </Row>

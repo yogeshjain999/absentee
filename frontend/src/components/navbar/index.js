@@ -42,7 +42,7 @@ const DefaultNavbar = (props) => {
               <NavLink to="#" className="nav-link">
                 Hi
                 {' '}
-                {props.currentUser.mobileNumber}
+                {props.currentUser.name}
               </NavLink>
             </NavItem>
             <NavItem>
@@ -65,7 +65,7 @@ const mapStateToProps = state => ({
 
 DefaultNavbar.propTypes = {
   currentUser: PropTypes.shape({
-    mobileNumber: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }).isRequired,
 };
 
