@@ -26,6 +26,6 @@ class Student < ApplicationRecord
 end
 
 def attendance_status
-  attandance = attendances.where(date: Date.today())
-  attandance.count == 1 ? attandance.first.present : ""
+  attendance = attendances.where("'date' > ?", Date.today.beginning_of_day)
+  attendance.count > 0 ? attendance.first.present : ""
 end

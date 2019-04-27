@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_042651) do
+ActiveRecord::Schema.define(version: 2019_04_27_095602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,8 +50,8 @@ ActiveRecord::Schema.define(version: 2019_04_27_042651) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "auth_token"
     t.bigint "school_id"
+    t.string "auth_token"
     t.index ["mobile_number"], name: "index_staffs_on_mobile_number", unique: true
     t.index ["reset_password_token"], name: "index_staffs_on_reset_password_token", unique: true
     t.index ["school_id"], name: "index_staffs_on_school_id"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2019_04_27_042651) do
   end
 
   create_table "standard_attendances", force: :cascade do |t|
-    t.datetime "date"
+    t.date "date"
     t.integer "no_of_student_present"
     t.integer "no_of_absent_student"
     t.boolean "attendance_marked", default: false

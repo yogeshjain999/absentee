@@ -1,7 +1,6 @@
 # Responsible for importing item master vessel tags
 class Attendance::Create
   Sidekiq::Extensions.enable_delay!
-
   def initialize(absent_roll_numbers, standard_id, date)
     @standard = Standard.find standard_id
     @school = @standard.school
