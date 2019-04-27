@@ -34,6 +34,7 @@ gem 'font-awesome-rails'
 gem 'globalize'
 gem 'globalize-accessors'
 gem 'jwt'
+gem 'rack-cors', require: 'rack/cors'
 
 # Bootstrap form
 gem "bootstrap_form", ">= 4.2.0"
