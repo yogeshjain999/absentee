@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 import {
-  Card, Row, Col, Button,
+  Card, Row, Col,
   TabContent, TabPane, Nav, NavItem, NavLink,
 } from 'reactstrap';
 
@@ -15,9 +15,21 @@ import studentsActions from '../../actionCreators/students';
 import StandardSelector from './standardSelector';
 import Students from './students';
 import Texter from './texter';
+import ConfirmationButton from './confirmationButton';
 
 const Attendance = (props) => {
+  const [submitting, setSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState('1');
+
+  const submitAttendance = () => {
+    setSubmitting(true);
+
+    Api.submitAttendance(props.absentStudents, props.standardId)
+      .then(() => setSubmitting(false))
+      .catch(() => setSubmitting(false));
+  };
+
+  const buttonClasses = () => classnames({ 'btn-loading': submitting });
 
   return (
     <Fragment>
@@ -38,7 +50,7 @@ const Attendance = (props) => {
                   className={classnames({ active: activeTab === '1' })}
                   onClick={() => { setActiveTab('1'); }}
                 >
-                  Swiper
+                  Via Student Cards
                 </NavLink>
               </NavItem>
 
@@ -47,7 +59,7 @@ const Attendance = (props) => {
                   className={classnames({ active: activeTab === '2' })}
                   onClick={() => { setActiveTab('2'); }}
                 >
-                  Texter
+                  Via Text
                 </NavLink>
               </NavItem>
             </Nav>
@@ -68,12 +80,18 @@ const Attendance = (props) => {
       </Row>
 
       <div className="m-5 text-center">
-        <Button
+        <ConfirmationButton
+          className={buttonClasses()}
+          students={props.students.students}
+          onConfirm={submitAttendance}
           color="success"
-          disabled={props.students.attendance_taken === undefined || props.students.attendance_taken === true}
+          disabled={
+            props.students.attendance_taken === undefined
+            || props.students.attendance_taken === true
+          }
         >
-          Save
-        </Button>
+          Confirm
+        </ConfirmationButton>
       </div>
     </Fragment>
   );
@@ -84,15 +102,20 @@ Attendance.propTypes = {
     students: PropTypes.arrayOf(PropTypes.object).isRequired,
     attendance_taken: PropTypes.bool,
   }).isRequired,
+
+  absentStudents: PropTypes.arrayOf(PropTypes.number).isRequired,
+  standardId: PropTypes.number.isRequired,
 };
 
 const Root = (props) => {
   const [loading, setLoading] = useState(false);
+  const [selectedStandardId, setSelectedStandardId] = useState(0);
 
   const loadStudents = (standardId) => {
     const promise = Api.students(standardId);
 
     setLoading(true);
+    setSelectedStandardId(standardId);
 
     promise
       .then((response) => {
@@ -109,7 +132,13 @@ const Root = (props) => {
       {
         loading
           ? <div className="center-spinner">Loading...</div>
-          : <Attendance students={props.students} />
+          : (
+            <Attendance
+              students={props.students}
+              absentStudents={props.absentStudents}
+              standardId={selectedStandardId}
+            />
+          )
       }
     </div>
   );
@@ -117,6 +146,7 @@ const Root = (props) => {
 
 const mapStateToProps = state => ({
   students: state.students,
+  absentStudents: state.absentStudents,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -130,6 +160,7 @@ Root.propTypes = {
     attendance_taken: PropTypes.bool,
     students: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
+  absentStudents: PropTypes.arrayOf(PropTypes.number).isRequired,
   importStudents: PropTypes.func.isRequired,
 };
 

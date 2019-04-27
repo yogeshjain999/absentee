@@ -21,6 +21,14 @@ const Api = {
   students(standardId) {
     return axios.get(`${routes.STUDENTS_API}?standard_id=${standardId}`);
   },
+
+  submitAttendance(rollNumbers, standardId) {
+    return axios.post(routes.ATTENDANCE_API, {
+      roll_numbers: rollNumbers,
+      standard_id: standardId,
+      date: new Date(),
+    });
+  },
 };
 
 export default Api;
