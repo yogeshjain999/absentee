@@ -1,4 +1,5 @@
 class StudentsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:destroy]
   def index
     @standards = Standard.all
     @pagy, @records = pagy(Student.all)
@@ -18,5 +19,14 @@ class StudentsController < ApplicationController
       @errors = service.errors.full_messages.collect(&:values).flatten
       render 'errors'
     end
+  end
+
+  def destroy
+    student  = Student.where(id: params[:id]).first
+    if student.present? 
+      student.attendances.delete_all
+      student.delete
+    end
+    
   end
 end
