@@ -64,6 +64,19 @@ ActiveRecord::Schema.define(version: 2019_04_27_042651) do
     t.index ["standard_id", "staff_id"], name: "index_staffs_standards_on_standard_id_and_staff_id"
   end
 
+  create_table "standard_attendances", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "no_of_student_present"
+    t.integer "no_of_absent_student"
+    t.boolean "attendance_marked", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "standard_id"
+    t.bigint "school_id"
+    t.index ["school_id"], name: "index_standard_attendances_on_school_id"
+    t.index ["standard_id"], name: "index_standard_attendances_on_standard_id"
+  end
+
   create_table "standards", force: :cascade do |t|
     t.string "standard"
     t.string "section"
@@ -105,6 +118,8 @@ ActiveRecord::Schema.define(version: 2019_04_27_042651) do
   add_foreign_key "attendances", "standards"
   add_foreign_key "attendances", "students"
   add_foreign_key "staffs", "schools"
+  add_foreign_key "standard_attendances", "schools"
+  add_foreign_key "standard_attendances", "standards"
   add_foreign_key "standards", "schools"
   add_foreign_key "students", "schools"
   add_foreign_key "students", "standards"

@@ -2,15 +2,10 @@
   .card-body
     %h4.card-title=t 'global.staff'
     .card-description
-    %table.table.bordered
+    %table.table.bordered#staffdt
       %thead
         %th=t 'staff.name'
         %th=t 'staff.mobile'
         %th=t 'staff.designation'
       %tbody
-        - @records.each do |record|
-          %tr
-            %td= record.name
-            %td= record.mobile_number
-            %td= record.designation
     = pagy_bootstrap_responsive_nav(@pagy).html_safe
