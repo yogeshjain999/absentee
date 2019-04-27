@@ -36,7 +36,7 @@ const Root = (props) => {
           : (
             <Attendance
               students={props.students}
-              absentStudents={props.absentStudents}
+              absentStudents={props.absentStudents[selectedStandardId] || []}
               standardId={selectedStandardId}
             />
           )
@@ -61,7 +61,7 @@ Root.propTypes = {
     attendance_taken: PropTypes.bool,
     students: PropTypes.arrayOf(PropTypes.object).isRequired,
   }).isRequired,
-  absentStudents: PropTypes.arrayOf(PropTypes.number).isRequired,
+  absentStudents: PropTypes.shape({}).isRequired,
   importStudents: PropTypes.func.isRequired,
 };
 

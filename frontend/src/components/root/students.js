@@ -18,6 +18,7 @@ const Students = props => (
                   <StudentCard
                     key={student.roll_no}
                     disabled={props.attendanceTaken}
+                    standardId={student.standard_id}
                     isAbsent={props.absentStudents.indexOf(student.roll_no) >= 0}
                     {...student}
                   />
@@ -35,7 +36,6 @@ const Students = props => (
 
 const mapStateToProps = state => ({
   students: state.students,
-  absentStudents: state.absentStudents,
 });
 
 Students.defaultProps = {

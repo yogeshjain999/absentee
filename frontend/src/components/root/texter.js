@@ -34,10 +34,6 @@ const Texter = (props) => {
   );
 };
 
-const mapStateToProps = state => ({
-  absentStudents: state.absentStudents,
-});
-
 const mapDispatchToProps = dispatch => ({
   bulkAbsentee(array) {
     dispatch(attendanceActions.bulkAbsentee(array));
@@ -54,4 +50,4 @@ Texter.propTypes = {
   bulkAbsentee: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Texter);
+export default connect(null, mapDispatchToProps)(Texter);

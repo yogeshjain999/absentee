@@ -43,7 +43,7 @@ const Attendance = (props) => {
               className="text-center text-success"
               hidden={attendanceTaken !== true}
             >
-              Attendance has already been taken!!!
+              Attendance has been taken!!!
             </h6>
 
             <Nav tabs className="mt-3">
@@ -61,20 +61,24 @@ const Attendance = (props) => {
                   className={classnames({ active: activeTab === '2' })}
                   onClick={() => { setActiveTab('2'); }}
                 >
-                  Via Text
+                  Via Roll Numbers
                 </NavLink>
               </NavItem>
             </Nav>
 
             <TabContent activeTab={activeTab} className="mt-3">
               <TabPane tabId="1">
-                <Students attendanceTaken={attendanceTaken} />
+                <Students
+                  absentStudents={props.absentStudents}
+                  standardId={props.standardId}
+                  attendanceTaken={attendanceTaken}
+                />
               </TabPane>
             </TabContent>
 
             <TabContent activeTab={activeTab} className="mt-3">
               <TabPane tabId="2">
-                <Texter disabled={attendanceTaken} />
+                <Texter disabled={attendanceTaken} absentStudents={props.absentStudents} />
               </TabPane>
             </TabContent>
           </Card>

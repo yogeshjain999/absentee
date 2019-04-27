@@ -20,10 +20,10 @@ const StudentCard = (props) => {
   const onStop = (e, card) => {
     if (card.lastX > 0) { // Left Toggle
       setColor('danger');
-      props.markAbsent({ roll_no: props.roll_no });
+      props.markAbsent({ roll_no: props.roll_no, standardId: props.standardId });
     } else { // Right Toggle
       setColor('secondary');
-      props.markPresent({ roll_no: props.roll_no });
+      props.markPresent({ roll_no: props.roll_no, standardId: props.standardId });
     }
   };
 
@@ -66,6 +66,7 @@ const mapDispatchToProps = dispatch => ({
 StudentCard.propTypes = {
   name: PropTypes.string.isRequired,
   roll_no: PropTypes.number.isRequired,
+  standardId: PropTypes.number.isRequired,
   isAbsent: PropTypes.bool.isRequired,
   disabled: PropTypes.bool.isRequired,
   markAbsent: PropTypes.func.isRequired,
