@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
   $("#staffdt").DataTable({
-    'ajax': '/en/staffs',
+    'ajax': '/'+locale+'/staffs',
   });

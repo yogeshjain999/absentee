@@ -5,7 +5,7 @@ jQuery ->
   initializeDatatable = (standard) ->
     $("#dttb").DataTable({
       destroy: true,
-      'ajax': '/en/students?standard_id='+ standard,
+      'ajax': '/'+locale+'/students?standard_id='+ standard,
     });
 
   initializeDatatable("")

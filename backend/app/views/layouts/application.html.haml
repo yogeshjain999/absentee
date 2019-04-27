@@ -13,3 +13,5 @@
       .container-fluid
         = yield
     = render 'layouts/footer'
+:javascript
+  window.locale = "#{params['locale']}"
