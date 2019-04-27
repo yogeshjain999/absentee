@@ -40,3 +40,17 @@ en:
     created: 'Attendance Created Successfully.'
   sms:
     absent: " is absent today."
+  navbar:
+    standard: 'Standard'
+    attendance: 'Attendance'
+    students: 'Students'
+    staff: 'Staff'
+    logout: 'Logout'
+    login: 'Login'
+    upload: 'Upload'
+  students:
+    reg_no: "Reg No."
+    roll_no: "Roll No."
+    name: "Name"
+    guardian_name: "Gaurdian Name"
+    guardian_mobile: "Guardian Mobile"
