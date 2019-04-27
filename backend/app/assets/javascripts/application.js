@@ -18,3 +18,4 @@
 //= require datatables
 //= require select2
 //= require_tree
+//= require highcharts
