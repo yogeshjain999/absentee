@@ -1,9 +1,7 @@
 import * as actions from '../actionTypes';
 
-const studentActions = {
-  markPresent: student => ({ type: actions.MARK_PRESENT, student }),
-  markAbsent: student => ({ type: actions.MARK_ABSENT, student }),
-  bulkAbsentee: array => ({ type: actions.BULK_ABSENTEE, array }),
+const studentsActions = {
+  import: list => ({ type: actions.IMPORT_STUDENTS, list }),
 };
 
-export default studentActions;
+export default studentsActions;

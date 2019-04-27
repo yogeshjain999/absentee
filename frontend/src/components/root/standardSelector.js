@@ -1,27 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import Select from 'react-select';
 
 import {
   Row, Col,
   Label, Button,
 } from 'reactstrap';
 
-import Select from 'react-select';
 
-const standards = [
-  { value: 1, label: '1' },
-  { value: 2, label: '2' },
-  { value: 3, label: '3' },
-];
+import Api from '../../api';
 
-const divisions = [
-  { value: 'A', label: 'A' },
-  { value: 'B', label: 'B' },
-  { value: 'C', label: 'C' },
-];
+const StandardSelector = (props) => {
+  const [loading, setLoading] = useState(false);
+  const [studentLoading, setStudentLoading] = useState(false);
+  const [standards, setStandards] = useState([]);
+  const [standard, setStandard] = useState({});
+  const [division, setDivision] = useState({});
 
-const StandardSelector = () => {
-  const [standard, setStandard] = useState('');
-  const [division, setDivision] = useState('');
+  useEffect(() => {
+    if (standards.length === 0) {
+      setLoading(true);
+      Api.standards()
+        .then((response) => {
+          setStandards(response.data.data);
+          setLoading(false);
+        });
+    }
+  }, [standards]);
+
+  const standardOptions = () => (
+    Object.keys(standards).map(std => ({ label: std, value: std }))
+  );
+
+  const divisionOptions = () => {
+    if (!standards[standard.value]) return [];
+    return standards[standard.value].map(dvsn => ({ label: dvsn.name, value: dvsn.id }));
+  };
+
+  const buttonClasses = () => classnames({ 'btn-loading': studentLoading });
+
+  const loadStudents = () => {
+    setStudentLoading(true);
+    props.loadStudents(division.value)
+      .then(() => setStudentLoading(false))
+      .catch(() => setStudentLoading(false));
+  };
 
   return (
     <Row>
@@ -33,8 +57,9 @@ const StandardSelector = () => {
             <Select
               value={standard}
               onChange={e => setStandard(e)}
-              options={standards}
+              options={standardOptions()}
               placeholder="Select Standard"
+              isLoading={loading}
             />
           </Col>
 
@@ -43,21 +68,32 @@ const StandardSelector = () => {
             <Select
               value={division}
               onChange={e => setDivision(e)}
-              options={divisions}
+              options={divisionOptions()}
               placeholder="Select Division"
+              isLoading={loading}
             />
           </Col>
 
           <Col sm="12" md="2">
             <Label className="mr-sm-2">{' '}</Label>
             <div className="text-center">
-              <Button>Submit</Button>
+              <Button
+                disabled={!division.value}
+                className={buttonClasses()}
+                onClick={loadStudents}
+              >
+                Submit
+              </Button>
             </div>
           </Col>
         </Row>
       </Col>
     </Row>
   );
+};
+
+StandardSelector.propTypes = {
+  loadStudents: PropTypes.func.isRequired,
 };
 
 export default StandardSelector;
