@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 2019_04_26_203209) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "school_id"
-    t.string "address"
     t.bigint "standard_id"
+    t.string "address"
     t.index ["school_id"], name: "index_students_on_school_id"
     t.index ["standard_id"], name: "index_students_on_standard_id"
   end
