@@ -1,36 +1,49 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Row, Col, Card } from 'reactstrap';
 
 import StudentCard from './studentCard';
 
-const list = [
-  { name: 'Priyanka Yadav', roll_no: 1 },
-  { name: 'Payal Bhalerao', roll_no: 2 },
-  { name: 'Anil Kumar', roll_no: 3 },
-  { name: 'Akshay Birajdar', roll_no: 4 },
-];
-
-const Students = () => (
+const Students = props => (
   <div className="container">
 
-    {/* Desktop View */}
-    <div className="d-sm-none d-md-block">
-      <Row>
-        <Col md="2" />
-        <Col md="8">
-          <Card body outline color="secondary">
-            <Row>
-              <Col sm="8" md="11">
-                {list.map(student => <StudentCard key={student.roll_no} {...student} />)}
-              </Col>
+    <Row>
+      <Col md="2" />
+      <Col md="8">
+        <Card body outline color="secondary">
+          <Row>
+            <Col sm="8" md="11">
+              {
+                props.students.map(student => (
+                  <StudentCard
+                    key={student.roll_no}
+                    isAbsent={props.absentStudents.indexOf(student.roll_no) >= 0}
+                    {...student}
+                  />
+                ))
+              }
+            </Col>
 
-              <Col sm="4" md="1" />
-            </Row>
-          </Card>
-        </Col>
-      </Row>
-    </div>
+            <Col sm="4" md="1" />
+          </Row>
+        </Card>
+      </Col>
+    </Row>
   </div>
 );
 
-export default Students;
+const mapStateToProps = state => ({
+  students: state.students,
+  absentStudents: state.absentStudents,
+});
+
+Students.propTypes = {
+  students: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    roll_no: PropTypes.number.isRequired,
+  })).isRequired,
+  absentStudents: PropTypes.arrayOf(PropTypes.number).isRequired,
+};
+
+export default connect(mapStateToProps, null)(Students);

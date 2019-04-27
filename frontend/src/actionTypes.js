@@ -1,1 +1,6 @@
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+
+export const LOAD_STUDENTS = 'LOAD_STUDENTS';
+export const MARK_ABSENT = 'MARK_ABSENT';
+export const MARK_PRESENT = 'MARK_PRESENT';
+export const BULK_ABSENTEE = 'BULK_ABSENTEE';
