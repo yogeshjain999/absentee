@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Row, Col, Input } from 'reactstrap';
 
-import studentActions from '../../actionCreators/students';
+import attendanceActions from '../../actionCreators/attendance';
 
 const Texter = (props) => {
   const [absentStudents, setAbsentStudents] = useState(props.absentStudents.join(', '));
@@ -39,7 +39,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   bulkAbsentee(array) {
-    dispatch(studentActions.bulkAbsentee(array));
+    dispatch(attendanceActions.bulkAbsentee(array));
   },
 });
 

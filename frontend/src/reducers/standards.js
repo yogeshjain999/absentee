@@ -1,12 +1,12 @@
 import * as actions from '../actionTypes';
 
-const students = (state = [], action) => {
+const standards = (state = [], action) => {
   switch (action.type) {
-    case actions.IMPORT_STUDENTS:
+    case actions.IMPORT_STANDARDS:
       return action.list;
     default:
       return state;
   }
 };
 
-export default students;
+export default standards;

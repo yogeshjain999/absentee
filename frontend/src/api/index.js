@@ -13,6 +13,14 @@ const Api = {
   logOut() {
     return axios.delete(routes.LOGOUT_API);
   },
+
+  standards() {
+    return axios.get(routes.STANDARDS_API);
+  },
+
+  students(standardId) {
+    return axios.get(`${routes.STUDENTS_API}?standard_id=${standardId}`);
+  },
 };
 
 export default Api;

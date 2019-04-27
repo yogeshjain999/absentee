@@ -7,7 +7,6 @@ import StudentCard from './studentCard';
 
 const Students = props => (
   <div className="container">
-
     <Row>
       <Col md="2" />
       <Col md="8">
