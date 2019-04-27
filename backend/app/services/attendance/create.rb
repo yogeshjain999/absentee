@@ -25,8 +25,16 @@ class Attendance::Create
                   end
     imported_data = Attendance.import attendances
     if imported_data
-      attendance_ids = Attendance.where(date: @date, present: false).pluck(:id)
-      Attendance::SendSms.delay.call(attendance_ids)
+      today_attendance_count = Attendance.where(date: @date, standard_id: @standard.id, school_id: @school.id).count
+      absent_student_attendance_ids = Attendance.where(date: @date, present: false, standard_id: @standard.id, school_id: @school.id).pluck(:id)
+      Attendance::SendSms.delay.call(absent_student_attendance_ids)
+      StandardAttendance.create(date: @date,
+                                school_id: @school.id,
+                                standard_id: @standard.id,
+                                attendance_marked: true,
+                                no_of_student_present: today_attendance_count - absent_student_attendance_ids.count,
+                                no_of_absent_student: absent_student_attendance_ids.count
+                                )
     end
   end
 end
