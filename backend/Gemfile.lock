@@ -113,6 +113,7 @@ GEM
       tilt
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
+    jquery-datatables (1.10.19.1)
     jquery-rails (4.3.3)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -281,6 +282,7 @@ DEPENDENCIES
   globalize
   globalize-accessors
   haml
+  jquery-datatables
   jquery-rails
   jwt
   listen (>= 3.0.5, < 3.2)
