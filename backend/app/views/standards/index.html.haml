@@ -1,10 +1,10 @@
 .card
   .card-body
-    %h4.card-title Class
+    %h4.card-title= t 'global.class'
     .card-description
     %table.table.bordered
       %thead
-        %th Class
+        %th= t 'global.class'
       %tbody
         - @records.each do |record|
           %tr

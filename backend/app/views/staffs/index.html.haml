@@ -1,12 +1,12 @@
 .card
   .card-body
-    %h4.card-title Staff
+    %h4.card-title=t 'global.staff'
     .card-description
     %table.table.bordered
       %thead
-        %th Name
-        %th Mobile
-        %th Designation
+        %th=t 'staff.name'
+        %th=t 'staff.mobile'
+        %th=t 'staff.designation'
       %tbody
         - @records.each do |record|
           %tr

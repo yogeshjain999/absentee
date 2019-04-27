@@ -1,8 +1,8 @@
 %ul.nav.nav-tabs
   %li.nav-item
-    %a.nav-link.active{"data-toggle" => "tab", :href => "#home"}= t 'navbar.students'
+    %a.nav-link.active{"data-toggle" => "tab", :href => "#home"}= t 'global.students'
   %li.nav-item
-    %a.nav-link{"data-toggle" => "tab", :href => "#menu1"}= t 'navbar.upload'
+    %a.nav-link{"data-toggle" => "tab", :href => "#menu1"}= t 'global.upload'
 
 .tab-content
   #home.tab-pane.container.active
@@ -10,9 +10,9 @@
       .card-body
         .row
           .col-md-4
-            %h4.card-title= t 'navbar.students'
+            %h4.card-title= t 'global.students'
           .col-md-2
-            %h5= t 'navbar.standard'
+            %h5= t 'global.standard'
           .col-md-6
             = select_tag 'standard', options_for_select(@standards.collect{ |s| [s.name, s.id] }), class: 'standard-select'
         .card-description

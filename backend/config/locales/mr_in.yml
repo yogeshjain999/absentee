@@ -9,7 +9,7 @@ mr-IN:
     created: 'उपस्थित यशस्वीरित्या तयार केले'
   sms:
     absent: ' आज अनुपस्थित आहे'
-  navbar:
+  global:
     standard: 'वर्ग'
     attendance: 'उपस्थिती'
     students: 'विद्यार्थी'
@@ -17,9 +17,14 @@ mr-IN:
     logout: 'साइनआउट'
     login: 'लॉगिन'
     upload: 'अपलोड'
+    class: 'वर्ग'
   students:
     reg_no: 'नोंदणी क्रमांक'
     roll_no: 'हजेरी क्रमांक'
     name: 'नाव'
     guardian_name: 'पालक नाव'
     guardian_mobile: 'पालक मोबाइल नंबर'
+  staff:
+    name: 'नाव'
+    mobile: 'मोबाइल नंबर'
+    designation: 'पद'
