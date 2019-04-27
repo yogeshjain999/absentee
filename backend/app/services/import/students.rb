@@ -1,10 +1,11 @@
 # Responsible for importing item master vessel tags
 class Import::Students
   include ActiveModel::Validations
-  attr_reader :result, :file_path
+  attr_reader :result, :file_path, :school_id
 
-  def initialize(file_path)
+  def initialize(file_path, school_id)
     @file_path = file_path
+    @school_id = school_id
   end
 
   def call
@@ -26,6 +27,8 @@ class Import::Students
 
   def prepare_data
     @student_data = @data.collect do |data|
+      standard = Standard.find_by(standard: data[:standard], section: data[:section])
+      data = data.merge(standard_id: standard.id, school_id: school_id).except(:standard, :section)
       Student.new(data)
     end
   end

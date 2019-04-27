@@ -1,29 +1,30 @@
 %ul.nav.nav-tabs
   %li.nav-item
-    %a.nav-link.active{"data-toggle" => "tab", :href => "#home"}= t 'navbar.students'
+    %a.nav-link{"data-toggle" => "tab", :href => "#home"} Students
   %li.nav-item
-    %a.nav-link{"data-toggle" => "tab", :href => "#menu1"}= t 'navbar.upload'
+    %a.nav-link.active{"data-toggle" => "tab", :href => "#menu1"} Upload
 
+/ Tab panes
 .tab-content
-  #home.tab-pane.container.active
+  #home.tab-pane.container
     .card
       .card-body
         .row
           .col-md-4
-            %h4.card-title= t 'navbar.students'
+            %h4.card-title Students
           .col-md-2
-            %h5= t 'navbar.standard'
+            %h5 Standard
           .col-md-6
             = select_tag 'standard', options_for_select(@standards.collect{ |s| [s.name, s.id] }), class: 'standard-select'
         .card-description
 
         %table.table.table-striped
           %thead
-            %th= t 'students.reg_no'
-            %th= t 'students.roll_no'
-            %th= t 'students.name'
-            %th= t 'students.guardian_name'
-            %th= t 'students.guardian_mobile'
+            %th Reg No.
+            %th Roll No.
+            %th Name
+            %th Gaurdian Name
+            %th Guardian Mobile
           %tbody
             - @records.each do |record|
               %tr
@@ -33,12 +34,15 @@
                 %td= record.guardian_name
                 %td= record.guardian_mobile_no.to_s + ' / ' + record.guardian_alternate_mobile_no
           = pagy_bootstrap_responsive_nav(@pagy).html_safe
-  #menu1.tab-pane.container.fade
+  #menu1.tab-pane.container.active
     .card
       .card-body
         %h4 Upload student information
         .row
           = form_for 'student', url: students_path do |f|
             = f.file_field "file", {onchange: 'this.form.submit();'}
-        .row
-          = link_to 'Download Sample', '/student-inventory.csv', action: 'download'
+        %table.table.table-striped
+          %tbody
+            - @errors.each do |error|
+              %tr
+                %td=error
